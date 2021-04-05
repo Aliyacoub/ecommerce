@@ -36,8 +36,12 @@ new MiniCssExtractPlugin({ filename: 'css/style.css' }),
         {
           test: /\.css$/i,
           use: [
-           
-            MiniCssExtractPlugin.loader, 
+            {
+              loader: MiniCssExtractPlugin.loader, 
+              options: {
+                publicPath: '../' 
+              }
+            },
             'css-loader'
           ]
         },
@@ -55,14 +59,15 @@ new MiniCssExtractPlugin({ filename: 'css/style.css' }),
           ]
         },
         {
-          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-                outputPath: 'fonts/'
-              }
+          test: /\.(svg|eot|woff|woff2|ttf)$/,
+        use: [
+          {
+            loader: "file-loader", 
+            options: {
+              name: '[name].[ext]',
+              outputPath: "fonts",
+              esModule: false,
+            }
             }
           ]
         },
