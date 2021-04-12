@@ -8,28 +8,28 @@ import '@fortawesome/fontawesome-free/js/all.min';
 
 $(window).on('load', function () {
   $('[data-toggle="tooltip"]').tooltip();
-  $('.add-to-card-btn').on('click', function(){
-      alert('اضيف المنتج الى عربة الشراء');
-    });
-    $('#copyright').text(" جميع الحقوق محفوظة للمتجر سنة " + new Date().getFullYear());
+  $('.add-to-card-btn').on('click', function () {
+    alert('اضيف المنتج الى عربة الشراء');
+  });
+  $('#copyright').text(" جميع الحقوق محفوظة للمتجر سنة " + new Date().getFullYear());
 
-    $(".product-option input[type='radio']").on('change', function(){
-      $(this).parents('.product-option').siblings().removeClass('active');
-      $(this).parents('.product-option').addClass('active');
-    });
-   
-    
+  $(".product-option input[type='radio']").on('change', function () {
+    $(this).parents('.product-option').siblings().removeClass('active');
+    $(this).parents('.product-option').addClass('active');
+  });
 
-  $('[data-remove-from-cart]').on( "click",function() { 
+
+
+  $('[data-remove-from-cart]').on("click", function () {
     $(this).parents('[data-product-info]').remove();
 
     // أعد حساب السعر الإجمالي بعد حذف أحد المُنتجات
     calculateTotalPrice();
-});
+  });
 
-// عندما تتغير كمية المنتج
-$('[data-product-quantity]').on( "change",function() {
-    
+  // عندما تتغير كمية المنتج
+  $('[data-product-quantity]').on("change", function () {
+
     // اجلب الكمية الجديدة
     var newQuantity = $(this).val();
 
@@ -47,15 +47,15 @@ $('[data-product-quantity]').on( "change",function() {
 
     // حدث السعر الإجمالي لكل المُنتجات
     calculateTotalPrice();
-});
+  });
 
-function calculateTotalPrice() {
-    
-  // أنشئ متغيّرًا جديدًا لحفظ السعر الإجمالي
-  var totalPriceForAllProducts = 0;
+  function calculateTotalPrice() {
 
-  // لكل سطر يمثل معلومات المُنتج في الصّفحة
-  $('[data-product-info]').each(function() {
+    // أنشئ متغيّرًا جديدًا لحفظ السعر الإجمالي
+    var totalPriceForAllProducts = 0;
+
+    // لكل سطر يمثل معلومات المُنتج في الصّفحة
+    $('[data-product-info]').each(function () {
 
       // اجلب سعر القطعة الواحدة من الخاصّية الموافقة
       var pricePerUnit = $(this).attr('data-product-price');
@@ -67,9 +67,58 @@ function calculateTotalPrice() {
 
       // أضف السعر الإجمالي لهذا المنتج إلى السعر الإجمالي لكل المُنتجات، واحفظ القيمة في المتغير نفسه
       totalPriceForAllProducts = totalPriceForAllProducts + (totalPriceForProduct);
-  });
+    });
 
     // حدث السعر الإجمالي لكل المُنتجات في الصفحة
-  $('#total-price-for-all-products').text(totalPriceForAllProducts + '$');
-}
- });
+    $('#total-price-for-all-products').text(totalPriceForAllProducts + '$');
+  }
+  var citiesByCountry = {
+    sa: ['الرياض', 'جدة'],
+    eg: ['القاهرة', 'الإسكندرية'],
+    jo: ['عمان', 'الزرقاء'],
+    sy: ['دمشق', 'حلب', 'حماه']
+  };
+
+  // عندما يتغير البلد
+  $('#form-checkout select[name="country"]').on("change", function () {
+    // اجلب رمز البلد
+    var country = $(this).val();
+
+    // اجلب مدن هذا البلد من المصفوفة
+    var cities = citiesByCountry[country];
+
+    // فرّغ قائمة المدن
+    $('#form-checkout select[name="city"]').empty();
+    $('#form-checkout select[name="city"]').append(
+      '<option disabled selected value="">اختر المدينة</option>'
+    );
+
+    // أضف المدن إلى قائمة المدن
+    cities.forEach(function (city) {
+      var newOption = $('<option></option>');
+      newOption.text(city);
+      newOption.val(city);
+      $('#form-checkout select[name="city"]').append(newOption);
+    });
+  });
+
+  $('#form-checkout input[name="payment_method"]').on( "change",function() {
+
+    // اجلب القيمة المُختارة حاليًا
+    var paymentMethod = $(this).val();
+
+    if (paymentMethod === 'on_delivery') {
+
+      // إذا كانت عند الاستلام، فعطّل حقول بطاقة الائتمان
+      $('#credit-card-info input').prop('disabled', true);
+
+    } else {
+
+      // وإلا ففعلّها
+      $('#credit-card-info input').prop('disabled', false);
+    }
+  
+    // بدل معلومات بطاقة الائتمان بين الظهور والإخفاء
+    $('#credit-card-info').toggle();
+  });
+});

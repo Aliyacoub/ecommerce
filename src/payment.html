@@ -1,13 +1,11 @@
-
-
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-        <title>متجر عربي</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>متجر عربي | صفحة الدفع</title>
         <script type="text/html" src="{require('index.js')}"></script>
-
     </head>
     <body>
         <div class="container-fluid">
@@ -123,7 +121,6 @@
                 </nav>
             </div>
             <!--نهاية الشريط العلوي-->
-
             <div class="container">
 
                 <!--عناصر التّنقّل الفرعيّة-->
@@ -132,23 +129,159 @@
                         <li>
                             <a href=".">الصفحة الرئيسية</a>
                         </li>
-                        <li class="active">عربة الشراء</li>
+                        <li>
+                            <a href="checkout.html">عربة الشراء</a>
+                        </li>
+                        <li class="active">الدفع</li>
                     </ol>
                 </div>
                 <!--نهاية عناصر التّنقّل الفرعيّة-->
-
-                <div class="borders-between">
-                    <!--قسم عربة الشراء-->
+                <!--نموذج الدفع-->
+                <form id="form-checkout" action="#">
                     <div class="row">
-                        <h1 class="custom-heading">عربة الشراء</h1>
-                        <form id="form-checkout" action="payment.html">
+                        <div class="col-lg-6 col-12">
+                            <h3 class="custom-heading">
+                                بياناتك الشخصية
+                            </h3>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control
+                                        custom-form-control
+                                        custom-input-details" name="fname"
+                                        placeholder="الاسم الاول" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control
+                                        custom-form-control
+                                        custom-input-details" name="lname"
+                                        placeholder="الاسم الاخير" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="email" class="form-control
+                                        custom-form-control
+                                        custom-input-details" name="email"
+                                        placeholder="البريد الالكتروني"
+                                        required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control
+                                        custom-form-control
+                                        custom-input-details" name="area"
+                                        placeholder="المنطقة" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <select name="country" class="form-control
+                                        custom-form-control
+                                        custom-input-details" required>
+                                        <option disabled selected value="">اختر
+                                            الدولة</option>
+                                        <option value="sa">السعودية</option>
+                                        <option value="eg">مصر</option>
+                                        <option value="jo">الاردن</option>
+                                        <option value="sy">سوريا</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <select name="city" class="form-control
+                                        custom-form-control
+                                        custom-input-details" required>
+                                        <option disabled selected value="">اختر
+                                            المدينة</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control
+                                        custom-form-control
+                                        custom-input-details" name="phonenum"
+                                        placeholder="رقم الموبايل" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control
+                                        custom-form-control
+                                        custom-input-details" name="addres1"
+                                        placeholder="العنوان الاول" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control
+                                        custom-form-control
+                                        custom-input-details" name="address2"
+                                        placeholder="العنوان الثاني اختياري"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <!--بيانات الدفع-->
+                        <div class="col-12 col-lg-6">
+                            <h3 class="custom-heading">بيانات الدفع</h3>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="label">
+                                        <input type="radio"
+                                            name="payment_method"
+                                            value="credit_card" checked>
+                                        الدفع بالبطاقة الائتمانية
+                                    </label>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="label">
+                                        <input type="radio"
+                                            name="payment_method"
+                                            value="on_delivery">
+                                        الدفع عند الاستلام
+                                    </label>
+                                </div>
+                                <!--بيانات بطاقة الائتمان-->
+                                <div class="row" id="credit-card-info">
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control
+                                            custom-form-control
+                                            custom-input-details"
+                                            type="text"
+                                            name="credit_card_number"
+                                            placeholder="رقم البطاقة" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input
+                                            name="credit_card_expiration_month"
+                                            class="form-control
+                                            custom-form-control
+                                            custom-input-details"
+                                            placeholder="شهر الانتهاء"
+                                            type="number" min="1" max="12"
+                                            required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control
+                                            custom-form-control
+                                            custom-input-details"
+                                            type="number" min="2018" max="2030"
+                                            placeholder="سنة الانتهاء"
+                                            name="credit_card_expiration_year"
+                                            required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control
+                                            custom-form-control
+                                            custom-input-details"
+                                            type="number" name="credit_card_cvv"
+                                            placeholder="CVV" required>
+                                    </div>
+                                </div>
+                                <!--نهاية بيانات بطاقة الائتمان-->
+                            </div>
+                        </div>
+                        <!--نهاية بيانات الدفع-->
+                        <!--قسم عربة الشراء-->
+                        <div class="col-12">
+                            <h3 class="custom-heading">طلبك</h3>
                             <table class="custom-table">
                                 <thead>
                                     <tr>
                                         <th>المنتج</th>
                                         <th>السعر</th>
                                         <th>العدد المطلوب</th>
-                                        <th class="hide-on-small">السعر الإجمالي</th>
+                                        <th class="hide-on-small">السعر
+                                            الإجمالي</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -157,12 +290,14 @@
                                         data-product-price="400">
                                         <td>
                                             <div class="media custom-media">
-                                                <img src="images/lacoste_1.jpg"
+                                                <img
+                                                    src="images/lacoste_1.jpg"
                                                     alt="تي شيرت رجالي من
                                                     لاكوست" class="d-none
                                                     d-md-block">
                                                 <div class="media-body">
-                                                    <h4>تي شيرت رجالي من لاكوست</h4>
+                                                    <h4>تي شيرت رجالي من
+                                                        لاكوست</h4>
                                                     <div
                                                         class="custom-text-muted">
                                                         ملابس رجالي
@@ -174,11 +309,13 @@
                                             400$
                                         </td>
                                         <td>
-                                            <input name="product1" type="hidden"
-                                                value="تي شيرت رجالي من لاكوست">
+                                            <input name="product1"
+                                                type="hidden" value="تي شيرت
+                                                رجالي من لاكوست">
                                             <select name="quantity1"
                                                 class="form-control
-                                                custom-form-control quantity"
+                                                custom-form-control
+                                                quantity"
                                                 data-product-quantity>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -191,9 +328,11 @@
                                         </td>
                                         <td>
                                             <button class="btn btn-danger
-                                                custom-btn custom-btn-danger"
+                                                custom-btn
+                                                custom-btn-danger"
                                                 data-remove-from-cart>
-                                                <span class="d-none d-md-block">حذف</span>
+                                                <span class="d-none
+                                                    d-md-block">حذف</span>
                                                 <i class="far fa-trash-alt
                                                     d-block d-md-none"></i>
                                             </button>
@@ -205,7 +344,8 @@
                                             <div class="media custom-media">
                                                 <img src="images/tshirt.jpg"
                                                     alt="تي شيرت أديداس"
-                                                    class="d-none d-md-block">
+                                                    class="d-none
+                                                    d-md-block">
                                                 <div class="media-body">
                                                     <h4>تي شيرت أديداس</h4>
                                                     <div
@@ -217,11 +357,13 @@
                                         </td>
                                         <td>300$</td>
                                         <td>
-                                            <input name="product2" type="hidden"
-                                                value="تي شيرت أديداس">
+                                            <input name="product2"
+                                                type="hidden" value="تي شيرت
+                                                أديداس">
                                             <select name="quantity2"
                                                 class="form-control
-                                                custom-form-control quantity"
+                                                custom-form-control
+                                                quantity"
                                                 data-product-quantity>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -234,9 +376,11 @@
                                         </td>
                                         <td>
                                             <button class="btn btn-danger
-                                                custom-btn-danger custom-btn"
+                                                custom-btn-danger
+                                                custom-btn"
                                                 data-remove-from-cart>
-                                                <span class="d-none d-md-block">حذف</span>
+                                                <span class="d-none
+                                                    d-md-block">حذف</span>
                                                 <i class="far fa-trash-alt
                                                     d-block d-md-none"></i>
                                             </button>
@@ -258,181 +402,19 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <button type="submit" class="btn custom-btn-primary2
-                                custom-btn-with-icon">
+                            <button type="submit" class="btn
+                                custom-btn-primary2 custom-btn-with-icon">
                                 <span>
                                     إكمال عمليّة الشّراء
                                     <i class="fas fa-dollar-sign fa-lg"></i>
                                 </span>
                             </button>
-                        </form>
+                        </div>
+                        <!--نهاية قسم عربة الشراء-->
                     </div>
-                    <!--نهاية قسم عربة الشراء-->
-
-                    <!--اقترحنا لك-->
-                    <div class="row suggestions">
-                        <h3 class="custom-heading col-sm-12">اقترحنا لك</h3>
-                        <!--منتج-->
-                        <div class="col-lg-3 col-md-4">
-                            <div class="card custom-thumbnail">
-                                <div class="overlay">
-                                    <button class="btn btn-secondary
-                                        add-to-cart-btn" data-add-to-cart="">
-                                        إضافة للعربة
-                                        <i class="fas fa-cart-plus"></i>
-                                    </button>
-                                </div>
-                                <img src="images/most_sold_2.jpg" alt="فلورا تي
-                                    شيرت">
-                                <div class="card-body">
-                                    <div class="clearfix">
-                                        <h4 class="float-right">فلورا تي شيرت</h4>
-                                        <div class="price float-left">
-                                            200$
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                        <div class="rating float-right">
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <button class="float-right btn
-                                            btn-default add-to-cart-btn d-block
-                                            d-lg-none" data-add-to-cart="">
-                                            إضافة للعربة
-                                            <i class="fas fa-cart-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--نهاية منتج-->
-
-                        <!--منتج-->
-                        <div class="col-lg-3 col-md-4">
-                            <div class="card custom-thumbnail">
-                                <div class="overlay">
-                                    <button class="btn btn-secondary
-                                        add-to-cart-btn">
-                                        إضافة للعربة
-                                        <i class="fas fa-cart-plus"></i>
-                                    </button>
-                                </div>
-                                <img src="images/most_sold_1.jpg" alt="شير بلوز
-                                    من نافي">
-                                <div class="card-body">
-                                    <div class="clearfix">
-                                        <h4 class="float-right">شير بلوز من نافي</h4>
-                                        <div class="price float-left">
-                                            500$
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                        <div class="rating">
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <button class="float-right btn
-                                            btn-default add-to-cart-btn d-block
-                                            d-lg-none" data-add-to-cart="">
-                                            إضافة للعربة
-                                            <i class="fas fa-cart-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--نهاية منتج-->
-
-                        <!--منتج-->
-                        <div class="col-lg-3 col-md-4">
-                            <div class="card custom-thumbnail">
-                                <div class="sale">50%</div>
-                                <div class="overlay">
-                                    <button class="btn btn-secondary
-                                        add-to-cart-btn">
-                                        إضافة للعربة
-                                        <i class="fas fa-cart-plus"></i>
-                                    </button>
-                                </div>
-                                <img src="images/most_sold_3.jpg" alt="جاكت
-                                    أولادي">
-                                <div class="card-body">
-                                    <div class="clearfix">
-                                        <h4 class="float-right">جاكت أولادي</h4>
-                                        <div class="price float-left">
-                                            450$
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                        <div class="rating">
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <button class="float-right btn
-                                            btn-default add-to-cart-btn d-block
-                                            d-lg-none" data-add-to-cart="">
-                                            إضافة للعربة
-                                            <i class="fas fa-cart-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--نهاية منتج-->
-
-                        <!--منتج-->
-                        <div class="col-lg-3 col-md-4 d-none d-lg-block">
-                            <div class="card custom-thumbnail">
-                                <div class="overlay">
-                                    <button class="btn btn-secondary
-                                        add-to-cart-btn">
-                                        إضافة للعربة
-                                        <i class="fas fa-cart-plus"></i>
-                                    </button>
-                                </div>
-                                <img src="images/hm_3.jpg" alt="طقم للصغار">
-                                <div class="card-body">
-                                    <div class="clearfix">
-                                        <h4 class="float-right">طقم للصغار</h4>
-                                        <div class="price float-left">
-                                            25$
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                        <div class="rating">
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                            <i class="fas fa-star active"></i>
-                                        </div>
-                                        <button class="float-right btn
-                                            btn-default add-to-cart-btn d-block
-                                            d-lg-none" data-add-to-cart="">
-                                            إضافة للعربة
-                                            <i class="fas fa-cart-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--نهاية منتج-->
-                    </div>
-                    <!--نهاية قسم اقترحنا لك-->
-                </div>
-
+                </form>
+                <!-- نهاية نموذج الدفع-->
             </div>
-
             <!--تذييل الصفحة-->
             <div id="footer" class="row">
                 <div id="brand-logos" class="col-12 text-center">
@@ -500,20 +482,5 @@
             </div>
             <!--نهاية تذييل الصفحة-->
         </div>
-
     </body>
-
 </html>
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
