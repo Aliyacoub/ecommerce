@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -99,6 +100,17 @@ new MiniCssExtractPlugin({ filename: 'css/style.css' }),
         filename: 'payment.html',
         template: './src/payment.html',
       }),
+      new HtmlWebpackPlugin({
+        filename: 'search.html',
+        template: './src/search.html',
+      }),
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery'",
+        "window.$": "jquery"
+      }),
       new  OptimizeCssAssetsPlugin({}),
     ],
+
   });
