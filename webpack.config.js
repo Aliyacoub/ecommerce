@@ -104,6 +104,10 @@ new MiniCssExtractPlugin({ filename: 'css/style.css' }),
         filename: 'search.html',
         template: './src/search.html',
       }),
+      new HtmlWebpackPlugin({
+        filename: 'contact.html',
+        template: './src/contact.html',
+      }),
       new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery",
